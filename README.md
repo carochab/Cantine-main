@@ -1,35 +1,29 @@
-# Bienvenue sur le site de la cantine Lo Garric
+# Welcome on the Cantine Lo Garric Site
 
-## Technos utilisées
+## Technologies used 
 
 + HTML, CSS
 + Bootstrap
 + Python, flask
 
-## Pour lancer le site web :
+## To launch the website :
 
 export FLASK_APP=main  
 flask run
 
-Il est nécessaire de posséder les modules *pandas*, *flask*, *flask_login* et *flask_bcrypt*
+It is necessary to have the modules *pandas*, *flask*, *flask_login* et *flask_bcrypt*
 
 ## Comptes
-Voici plusieurs comptes pour jouer avec la base de données
+Here are several accounts to play with the database
 
 Admin  
 identifiant : admin  
 MDP : admin
 
-Enseignant  
+Teacher 
 identifiant : jneymar  
 MDP : jneymar
 
-Representant  
+Legal representative 
 identifiant : gartalle  
 MDP : test
-
-Il y a d'autres comptes disponibles dans /documents/cantine.sql
-
-## Date du jour
-Il est possible de changer la date actuelle  
-avec la fonction choixDate() ligne 96 dans le main.py afin de faire des tests sur une année scolaire (Aout/Année N - Juillet/Année N+1 )
