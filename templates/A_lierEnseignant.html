@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Enseignants Classe</title>
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+
+    <div class="container mt-5 mb-5">
+        <h3>Classe : {{ classe[1] }}</h3>
+        <form method="POST">
+            <div class="form-group row">
+                <div class="col-sm-2">Enseignants</div>
+                <div class="col-sm-10">
+                    {% for enseignant in enseignants %}
+                    <div class="form-check">
+                        {% set br = namespace (break = 1) %}
+                        {% for enseigne in enseignes %}
+                        {% if enseignant[2] == enseigne[0] %}
+                        <input class="form-check-input" type="checkbox" value="{{ enseignant[2] }}"
+                            name="{{ enseignant[0] }} {{ enseignant[1] }}" id="{{ enseignant[0] }} {{ enseignant[1] }}"
+                            checked>
+                        {% set br.break = 0 %}
+                        {% endif %}
+                        {% endfor %}
+                        {% if br.break == 1 %}
+                        <input class="form-check-input" type="checkbox" value="{{ enseignant[2] }}"
+                            name="{{ enseignant[0] }} {{ enseignant[1] }}" id="{{ enseignant[0] }} {{ enseignant[1] }}">
+                        {% endif %}
+
+                        <label class="form-check-label" for="{{ enseignant[0] }} {{ enseignant[1] }}">
+                            {{ enseignant[0] }} {{ enseignant[1] }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning mb-3">Modifier</button>
+            <a href="/detailsClasse/{{ classe[0] }}" class="btn btn-warning mb-3">Retour</a>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

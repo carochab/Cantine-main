@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Détails Famille</title>
+    {% endblock %}
+</head>
+
+
+<body>
+    {% block content %}
+    <div class="container mt-5 mb-5">
+        <form method="POST">
+
+            <div class="row mb-3">
+                <label for="id" class="col-sm-2 col-form-label">Identifiant</label>
+                <div class="col-sm-10">
+                    <input name="id" type="text" class="form-control" id="id" value="{{representant[(5)]}}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="surname" class="col-sm-2 col-form-label">Nom du responsable légal</label>
+                <div class="col-sm-10">
+                    <input name="surname" type="name" class="form-control" id="surname" value="{{representant[1]}}"
+                        required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Prénom</label>
+                <div class="col-sm-10">
+                    <input name="name" type="name" class="form-control" id="name" value="{{representant[2]}}" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="mail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input name="mail" type="email" class="form-control" id="mail" value="{{representant[4]}}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="phone" class="col-sm-2 col-form-label">Telephone</label>
+                <div class="col-sm-10">
+                    <input name="phone" type="number" class="form-control" id="phone" value="{{representant[3]}}">
+                </div>
+            </div>
+            <input type="hidden" id="id" name="id" value="{{representant[5]}}">
+            <button type="submit" class="btn btn-warning">Valider les modifications</button>
+            <a href="/ajouterEnfant/{{ representant[0] }}" class="btn btn-warning">Creer un enfant</a>
+            <a href="/suppressionR/{{ representant[0] }}" class="btn btn-warning"
+                onclick="if (confirm('Voulez-vous vraiment supprimer ce compte ?')) commentDelete(1); return false">Supprimer
+                le Compte</a>
+            <a href="/modifMDPR/{{ representant[0] }}" class="btn btn-warning"
+                onclick="if (confirm('Voulez-vous vraiment reinitialiser le mot de passe ?')) commentDelete(1); return false">Réinitialiser
+                le mot de
+                passe</a>
+            <a href="/infosFamilles" class="btn btn-warning">Retour</a>
+        </form>
+    </div>
+    {% if enfants%}
+    <div class="container mt-5 mb-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <div class="container mt-5 mb-5">
+                        <th scope="col">Nom enfant</th>
+                        <th scope="col">Prénom enfant</th>
+                        <th scope="col">Classe</th>
+                        <th scope="col">Details</th>
+                        <div>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enfant in enfants %}
+                <tr>
+                    <div class="container mt-5 mb-5">
+                        <td>{{ enfant[0] }}</td>
+                        <td>{{ enfant[1] }}</td>
+                        <td>{{ enfant[2] }}</td>
+                        <td>
+                            <a href="/detailsEnfant/{{ enfant[3] }}" class="btn btn-warning">Editer</a>
+                        </td>
+                        <div>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    {% endif %}
+
+    {% endblock %}
+</body>
+
+</html>

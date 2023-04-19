@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "E_layout.html" %}
+    {% block head %}
+    <title>CLG - Modification MDP</title>
+    {% endblock %}
+</head>
+
+
+<body>
+    {% block content %}
+
+    <div class="container mt-5">
+        <form method="POST">
+            <div class="mb-3 row">
+                <label for="password" class="col-sm-2 col-form-label">Ancien mot de passe</label>
+                <div class="col-sm-10">
+                    <input name="fpassword" id="fpassword" class="form-control" type="password" value=""
+                        aria-label="default input example">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="password" class="col-sm-2 col-form-label">Mot de passe</label>
+                <div class="col-sm-10">
+                    <input name="password" id="password" class="form-control" type="password" value=""
+                        aria-label="default input example">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="password2" class="col-sm-2 col-form-label">Confirmation du mot de passe</label>
+                <div class="col-sm-10">
+                    <input name="password2" id="password2" class=" form-control" type="password" value=""
+                        aria-label="default input example">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning mb-3">Modifier</button>
+            <a href="/accueilEnseignant" class="btn btn-warning mb-3">Retour</a>
+        </form>
+
+    </div>
+    {% if error %}
+    <p>{{error}}</p>
+    {% endif %}
+    {% endblock %}
+</body>
+
+</html>

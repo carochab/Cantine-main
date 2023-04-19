@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Création Comptes</title>
+    {% endblock %}
+</head>
+
+
+<body>
+
+{% block content %}
+
+    <div class="container mt-5">
+        <form method="post">
+            <div class="row mb-3">
+                <label for="surname" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                    <input name="surname" type="text" class="form-control" id="surname" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Prénom</label>
+                <div class="col-sm-10">
+                    <input name="name" type="text" class="form-control" id="name" required>
+                </div>
+            </div>
+        <div class="row mb-3">
+            <label for="id" class="col-sm-2 col-form-label">Identifiant</label>
+            <div class="col-sm-10">
+                <input name="id" type="text" class="form-control" id="id" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="password" class="col-sm-2 col-form-label">Mot de passe</label>
+            <div class="col-sm-10">
+                <input name="password" type="password" class="form-control" id="password" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="password2" class="col-sm-2 col-form-label">Confirmez mot de passe</label>
+            <div class="col-sm-10">
+                <input name="password2" type="password" class="form-control" id="password2" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="type" class="col-sm-2 col-form-label">Type de Compte</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="type" id="type">
+                    <option value="Representant">Representant</option>
+                    <option value="Enseignant">Enseignant</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-warning mb-3" type="submit">Créer un compte</button>
+        </form>
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+        {% if msg %}
+            <p>{{ msg }}</p>
+        {% endif %}
+    </div>
+{% endblock %}
+</body>
+
+</html>

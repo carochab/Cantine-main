@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "R_layout.html" %}
+    {% block head %}
+    <title>CLG - Factures</title>
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block content %}
+    <div class="container mt-5">
+        <form method="post">
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="facture">Date de la facture</label>
+                <div class="col-sm-10">
+                    <select name="facture" class="form-control" id="facture">
+                        {% set m = namespace (moisActuel = 8) %}
+                        {% for month in months %}
+                        {% if m.moisActuel == mois %}
+                        {% if loop.index0 > 4 and mois < 7 %} <option value="{{ m.moisActuel }}" selected>{{ month }} {{
+                            year }}</option>
+                            {% else %}
+                            <option value="{{ m.moisActuel }}" selected>{{ month }} {{ year1 }}</option>
+                            {% endif %}
+                            {% else %}
+                            {% if loop.index0 > 4 and mois < 7 %} <option value="{{ m.moisActuel }}">{{ month }} {{ year
+                                }}</option>
+                                {% else %}
+                                <option value="{{ m.moisActuel }}">{{ month }} {{ year1 }}</option>
+                                {% endif %}
+                                {% endif %}
+                                {% set m.moisActuel = (m.moisActuel + 1)%13 %}
+                                {% if m.moisActuel == 0 %}
+                                {% set m.moisActuel = 1 %}
+                                {% endif %}
+                                {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning mb-3">Valider</button>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

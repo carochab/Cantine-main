@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Liste Enseignants</title>
+    {% endblock %}
+</head>
+
+
+<body>
+    {% block content %}
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom enseignant</th>
+                    <th scope="col">Prénom enseignant</th>
+                    <th scope="col">identifiant</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enseignant in enseignants %}
+                <tr>
+                    <td>{{ enseignant[1] }}</td>
+                    <td>{{ enseignant[2] }}</td>
+                    <td>{{ enseignant[3] }}</td>
+                    <td>
+                        <a href="/detailsEnseignant/{{ enseignant[0] }}" class="btn btn-warning">Editer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

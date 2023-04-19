@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "R_layout.html" %}
+    {% block head %}
+    <title>CLG - Facture n°{{ date }}{{ representant[2] }}</title>
+    {% endblock %}
+</head>
+
+<body>
+
+
+    {% block content %}
+    <div class="container mt-5">
+
+
+        <p>Date du Jour : {{ now }}</p>
+        <p>Nom du representant : {{ representant[0] }} {{ representant[1] }}</p>
+        <p>N° de facture {{ date }}{{ representant[2] }}</p>
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">Date</th>
+                <th scope="col">Enfant</th>
+                <th scope="col">Prix</th>
+            </thead>
+            <tbody>
+                {% set pr = namespace (prixTotal = 0) %}
+                {% set i = namespace (index = 0) %}
+                {% for repa in repas %}
+                <tr>
+                    <td scope="row">{{ dateInter[i.index] }}</td>
+                    <td>{{ repa[1] }}</td>
+                    <td>{{ repa[2] }}€</td>
+                </tr>
+                {% set i.index = i.index + 1 %}
+                {% set pr.prixTotal = pr.prixTotal + repa[2] %}
+                {% endfor %}
+                <tr>
+                    <th scope="row">TOTAL</th>
+                    <td></td>
+                    <td>{{ pr.prixTotal | round }}€</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <a class="btn btn-warning mb-3" href="/facture">Retour</a>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

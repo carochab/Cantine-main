@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Détails Classe</title>
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="container mt-3">
+        <h1>Classe de {{ classe[0] }}</h1>
+        <form method="POST" class="mb-3">
+
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                    <input name="name" type="name" class="form-control" id="name" value="{{classe[0]}}" required>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="classe" class="col-sm-2  col-form-label">Classe</label>
+                <div class="col-sm-10">
+                    <select name="classe" class="form-control" id="classe">
+                        {% for type in types %}
+                        {% if classe[2] == type[0] %}
+                        <option value="{{ type[0] }}" selected>{{ type[2] }}</option>
+                        {% else %}
+                        <option value="{{ type[0] }}">{{ type[2] }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning">Valider les modifications</button>
+            <a href="/lierEnseignant/{{ classe[1] }}" class="btn btn-warning">Lier à un enseignant</a>
+            {% if not enfants %}
+            <a href="/suppressionC/{{ classe[1] }}" class="btn btn-warning"
+                onclick="if (confirm('Voulez-vous vraiment supprimer cette classe ?')) commentDelete(1); return false">Supprimer la Classe</a>
+            {% endif %}
+            <a href="/infosClasses" class="btn btn-warning">Retour</a>
+
+
+        </form>
+        {% if enseignants%}
+        <h2>Enseignants de la Classe</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom Enseignant</th>
+                    <th scope="col">Prenom Enseignant</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enseignant in enseignants %}
+                <tr>
+                    <td>{{ enseignant[0] }}</td>
+                    <td>{{ enseignant[1] }}</td>
+                    <td>
+                        <a href="/detailsEnseignant/{{ enseignant[2] }}" class="btn btn-warning">Editer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+        {%endif%}
+        {% if enfants %}
+        <h2>Eleves de la Classe</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom enfant</th>
+                    <th scope="col">Prenom enfant</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enfant in enfants %}
+                <tr>
+                    <td>{{ enfant[0] }}</td>
+                    <td>{{ enfant[1] }}</td>
+                    <td>
+                        <a href="/detailsEnfant/{{ enfant[2] }}" class="btn btn-warning mb-3">Editer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+
+</html>

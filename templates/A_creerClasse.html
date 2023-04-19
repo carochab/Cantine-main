@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Création Classe</title>
+    {% endblock %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="container mt-5 mb-5">
+        <form method="POST">
+            <div class="row mb-3">
+                <label for="classe" class="col-sm-2 col-form-label">Nom classe</label>
+                <div class="col-sm-10">
+                    <input name="classe" type="text" class="form-control" id="classe">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="type_classe" class="col-sm-2  col-form-label">Classe</label>
+                <div class="col-sm-10">
+                    <select name="type_classe" class="form-control" id="type_classe">
+                        {% for type_classe in types_classe %}
+                        <option value="{{ type_classe[0] }}">{{ type_classe[2] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning mb-3">Créer</button>
+            <a href="/infosClasses" class="btn btn-warning mb-3">Retour</a>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

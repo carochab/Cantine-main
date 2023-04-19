@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Liste Classes</title>
+    {% endblock %}
+</head>
+
+
+<body>
+    {% block content %}
+
+    <div class="container mt-3">
+        <a href="/creerClasse" class="btn btn-warning">Creer une classe</a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Nom classe</th>
+                    <th scope="col">Niveau classe</th>
+                    <th scope="col">Code classe</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for classe in classes %}
+                <tr>
+                    <td>{{ classe[1] }}</td>
+                    <td>{{ classe[2] }}</td>
+                    <td>{{ classe[3] }}</td>
+                    <td>
+                        <a href="/detailsClasse/{{ classe[0] }}" class="btn btn-warning">Editer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

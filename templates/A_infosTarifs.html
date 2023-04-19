@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "A_layout.html" %}
+    {% block head %}
+    <title>CLG - Liste Familles</title>
+    {% endblock %}
+</head>
+
+
+<body>
+    {% block content %}
+    <div class="container mt-3">
+        <a href="/creerTarif" class="btn btn-warning">Creer un tarif</a>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Code tarif</th>
+                    <th scope="col">Nom tarif</th>
+                    <th scope="col">Tarif</th>
+                    <th scope="col">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarif in tarifs %}
+                <tr>
+                    <td>{{ tarif[0] }}</td>
+                    <td>{{ tarif[1] }}</td>
+                    <td>{{ tarif[2] }} €</td>
+                    <td>
+                        <a href="/detailsTarif/{{ tarif[0] }}" class="btn btn-warning">Editer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

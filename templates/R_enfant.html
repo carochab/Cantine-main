@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% extends "R_layout.html" %}
+    {% block head %}
+    <title>CLG - {{enfant[1]}}</title>
+    {% endblock %}
+</head>
+
+
+<body>
+
+
+    {% block content %}
+
+    <div class="container mt-3 mb-3">
+        <h1>Informations de {{ enfant[0] }} {{ enfant[1] }}</h1>
+
+        <form method="POST">
+            <div class="row mt-3 mb-3">
+                <label for="formule" class="col-sm-2 col-form-label">Formule</label>
+                <div class="col-sm-10">
+                    <select name="formule" class="form-control" id="formule" disabled>
+                        {% for formule in formules %}
+                        {% if enfant[2] == formule[0] %}
+                        <option value="{{ formule[0] }}" selected>{{ formule[1] }}</option>
+                        {% else %}
+                        <option value="{{ formule[0] }}">{{ formule[1] }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row mt-3 mb-3">
+                <div class="col-sm-2">
+                    <p>Jours</p>
+                </div>
+                <div class="col-sm-10">
+                    {% for jour in jours %}
+                    <div class="form-check">
+                        {% set br = namespace (break = 1) %}
+                        {% for jourMange in joursManges %}
+                        {% if jour[0] == jourMange[0] %}
+                        <input class="form-check-input" type="checkbox" value="{{ jour[0] }}" name="{{ jour[1] }}"
+                            id="{{ jour[1] }}" checked>
+                        {% set br.break = 0 %}
+                        {% endif %}
+                        {% endfor %}
+                        {% if br.break == 1 %}
+                        <input class="form-check-input" type="checkbox" value="{{ jour[0] }}" name="{{ jour[1] }}"
+                            id="{{ jour[1] }}">
+                        {% endif %}
+
+                        <label class="form-check-label" for="{{ jour[1] }}">
+                            {{ jour[1] }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group row mt-3 mb-3">
+                <div class="col-sm-2">
+                    <p>Allergies</p>
+                </div>
+                <div class="col-sm-10">
+                    {% for allergie in allergies %}
+                    <div class="form-check">
+                        {% set br = namespace (break = 1) %}
+                        {% for allergique in allergiques %}
+                        {% if allergie[0] == allergique[0] %}
+                        <input class="form-check-input" type="checkbox" value="{{ allergie[0] }}"
+                            name="{{ allergie[1] }}" id="{{ allergie[1] }}" checked>
+                        {% set br.break = 0 %}
+                        {% endif %}
+                        {% endfor %}
+                        {% if br.break == 1 %}
+                        <input class="form-check-input" type="checkbox" value="{{ allergie[0] }}"
+                            name="{{ allergie[1] }}" id="{{ allergie[1] }}">
+                        {% endif %}
+
+                        <label class="form-check-label" for="{{ allergie[1] }}">
+                            {{ allergie[1] }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning mb-3">Valider</button>
+<!-- ajouter un confirm -->
+        </form>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
