@@ -1,4 +1,4 @@
-# Welcome on the Cantine Lo Garric Site
+# Welcome on the Cantine Lo Garric website
 
 ## Technologies used 
 
